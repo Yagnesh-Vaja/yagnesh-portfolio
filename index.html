@@ -27,6 +27,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
+section,header.hero{scroll-margin-top:calc(88px + env(safe-area-inset-top,0px))}
 body{background:var(--ink);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
@@ -62,7 +63,10 @@ nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-bloc
 .navbtns{display:flex;gap:6px}
 .navbtns .btn{padding:8px 14px;font-size:13px}
 @media (max-width:860px){.navlinks{display:none}}
-@media (max-width:440px){#cmdBtn{display:none}}
+#cmdBtn .ml{display:none}
+@media (max-width:860px){#cmdBtn kbd,#cmdBtn .cl{display:none}#cmdBtn .ml{display:inline}}
+@media (max-width:380px){.navbar{padding-left:12px;gap:8px}.navbtns{gap:4px}.navbtns .btn{padding:8px 11px;font-size:12.5px}}
+@media (max-width:330px){.logo{font-size:0;gap:0}.logo .dot{margin:0}}
 
 /* hero */
 .hero{padding-block:28px 40px}
@@ -105,7 +109,7 @@ nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-bloc
 @keyframes pop{from{transform:translateY(8px);opacity:.3}}
 .msg.u{align-self:flex-end;background:var(--violet);color:#120E2B;border-bottom-right-radius:4px}
 .msg.b{align-self:flex-start;background:var(--panel2);border:1px solid var(--line);border-bottom-left-radius:4px}
-.msg .trace{display:block;font-family:var(--mono);font-size:11.5px;color:var(--mute);margin-bottom:6px}
+.msg .trace{display:block;font-family:var(--mono);font-size:12px;color:var(--mute);margin-bottom:6px}
 .msg .trace b{color:var(--mint);font-weight:500}
 .msg ul{margin:6px 0 0;padding-left:18px}
 .chatform{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
@@ -131,7 +135,7 @@ nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-bloc
 .node ul{margin:12px 0 0;padding-left:18px;color:#C8CEE2}
 .node li{margin-top:4px}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.tag{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:7px;background:var(--panel2);color:var(--violet);border:1px solid var(--line)}
+.tag{font-family:var(--mono);font-size:12.5px;padding:4px 9px;border-radius:7px;background:var(--panel2);color:var(--violet);border:1px solid var(--line)}
 .node.live .pin{background:var(--mint);color:#062A1E;border-color:var(--mint)}
 
 /* shipped */
@@ -167,7 +171,7 @@ nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-bloc
 @media (max-width:860px){.skills{grid-template-columns:1fr}}
 #skillCanvas{width:100%;height:440px;display:block;cursor:pointer}
 .legend{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;border-top:1px solid var(--line)}
-.legend button{font:500 12px var(--mono);background:transparent;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:5px 10px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.legend button{font:500 13px var(--mono);background:transparent;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:8px 14px;min-height:40px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .legend button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
 .legend button i{width:8px;height:8px;border-radius:50%}
 .evidence{padding:22px}
@@ -223,6 +227,7 @@ body.recruiter .os{display:none}
 .pal li{padding:10px 12px;border-radius:10px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:14px}
 .pal li span{font-family:var(--mono);font-size:12px;color:var(--mute)}
 .pal li.sel{background:var(--panel2);color:var(--amber)}
+@media (max-width:560px){#palette{padding-top:calc(76px + env(safe-area-inset-top,0px))}.pal ul{max-height:calc(100vh - 180px);max-height:calc(100dvh - 180px)}}
 
 /* ===== scroll FX layer ===== */
 #prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--violet),var(--amber),var(--mint));z-index:70}
@@ -285,6 +290,40 @@ body.recruiter #hud,body.recruiter #bggrid,body.recruiter .orb{display:none}
 .spot:hover::before{opacity:1}
 .scramble{font-variant-numeric:tabular-nums}
 
+@media (max-width:560px){
+  .wrap{padding-inline:0}
+  .hero{padding-block:20px 28px}
+  .bootgrid{margin-top:28px}
+  .term{font-size:12.5px;min-height:0}
+  .chat{height:460px}
+  .msg{max-width:94%;font-size:15px}
+  .chatform input{font-size:16px}
+  .btn{padding:12px 18px}
+  .cta .btn{flex:1 1 100%;justify-content:center}
+  .node{grid-template-columns:40px 1fr;gap:12px}
+  .node .pin{width:40px;height:40px;font-size:12px}
+  .pipe .track{left:19px}
+  .node .card{padding:18px}
+  .node h3{font-size:20px}
+  .ship-copy h3{font-size:26px}
+  .metrics{gap:14px}
+  .hcard{width:84vw;padding:24px}
+  .skills .win:first-child canvas{height:380px}
+  .legend{gap:8px;padding:10px}
+  .legend button{padding:8px 12px}
+  footer{flex-direction:column;align-items:flex-start}
+  .stores .store{font-size:12px}
+}
+@media (min-width:561px) and (max-width:1024px){
+  .chat{height:480px}
+  .hcard{width:min(380px,62vw)}
+  .skills .win:first-child canvas{height:400px}
+  .node .card{padding:22px 24px}
+}
+@media (hover:none) and (pointer:coarse){
+  .btn,.navlinks a,.suggest button,.legend button{min-height:44px}
+  .suggest button{padding:10px 16px}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -296,7 +335,7 @@ body.recruiter #hud,body.recruiter #bggrid,body.recruiter .orb{display:none}
       <a href="#agent">Ask my agent</a><a href="#career">Career</a><a href="#shipped">Shipped</a><a href="#skills">Skills</a><a href="#ai">AI workflow</a>
     </div>
     <div class="navbtns">
-      <button class="btn" id="cmdBtn" type="button" aria-label="Open command palette"><kbd>/</kbd> Commands</button>
+      <button class="btn" id="cmdBtn" type="button" aria-label="Open menu" aria-haspopup="dialog"><kbd>/</kbd> <span class="cl">Commands</span><span class="ml">☰ Menu</span></button>
       <button class="btn primary" id="recBtn" type="button" aria-pressed="false">Recruiter mode</button>
     </div>
   </div>
@@ -369,7 +408,7 @@ body.recruiter #hud,body.recruiter #bggrid,body.recruiter .orb{display:none}
         <div class="msgs" id="msgs" aria-live="polite"></div>
         <form class="chatform" id="chatform">
           <label for="q" class="sr">Ask a question</label>
-          <input id="q" autocomplete="off" placeholder="e.g. Can he work hybrid in Mumbai?">
+          <input id="q" autocomplete="off" placeholder="Ask about his work…">
           <button class="btn primary" type="submit">Ask</button>
         </form>
       </div>
@@ -857,7 +896,7 @@ let pi=0,shown=CMDS;
 function go(h){if(document.body.classList.contains('recruiter'))setRec(false);document.querySelector(h).scrollIntoView({behavior:RM?'auto':'smooth'})}
 function render(){const q=palIn.value.toLowerCase();shown=CMDS.filter(c=>c[0].toLowerCase().includes(q));pi=Math.min(pi,Math.max(0,shown.length-1));
   palList.innerHTML=shown.map((c,i)=>`<li class="${i===pi?'sel':''}" data-i="${i}">${c[0]}<span>${c[1]}</span></li>`).join('')||'<li>No match</li>'}
-function openPal(){pal.hidden=false;palIn.value='';pi=0;render();palIn.focus()}
+function openPal(){pal.hidden=false;palIn.value='';pi=0;render();if(matchMedia('(hover:hover)').matches)palIn.focus()}
 function closePal(){pal.hidden=true}
 function runPal(){const c=shown[pi];closePal();if(c)c[2]()}
 $('#cmdBtn').onclick=openPal;
