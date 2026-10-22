@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Yagnesh Vaja · Frontend Developer</title>
+<meta name="description" content="Yagnesh Vaja, frontend developer in Mumbai. React Native, Expo, TypeScript, React, Astro and Tailwind CSS. Built the India Forums mobile app, live on Google Play and the App Store.">
+<meta name="theme-color" content="#090D18">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yagnesh Vaja · Frontend Developer">
+<meta property="og:description" content="Frontend and React Native developer in Mumbai. Open to on-site or hybrid roles.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090D18'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-weight='800' font-size='30' text-anchor='middle' fill='%23FFB547'%3EYV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>
+/* Layout: an "agent OS" — one long console of panels; hero name is built from live particles, every section is an app window */
+:root{
+  --ink:#090D18; --panel:#10172A; --panel2:#151E36; --line:#24304F;
+  --fg:#E9EDF8; --mute:#8D96B5; --amber:#FFB547; --violet:#9C8CFF; --mint:#5BE3B0;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(900px 500px at 85% -10%,rgba(156,140,255,.13),transparent 60%),radial-gradient(700px 420px at -10% 30%,rgba(255,181,71,.07),transparent 60%)}
+.wrap{max-width:1120px;margin:0 auto;position:relative;z-index:1}
+h1,h2,h3{font-family:var(--display);line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,5vw,54px);font-weight:800;letter-spacing:-.02em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--amber)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+section{padding-block:clamp(64px,10vw,120px)}
+.lede{color:var(--mute);max-width:60ch;font-size:17px}
+.btn{font:600 15px var(--body);border-radius:999px;padding:12px 20px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--amber)}
+.btn.primary{background:var(--amber);color:#1A1204;border-color:var(--amber)}
+.btn.primary:hover{background:#FFC46B}
+kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--mute)}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;padding-block:14px}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(16,23,42,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:16px;padding:8px 8px 8px 16px}
+.logo{font-family:var(--mono);font-size:13px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(91,227,176,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(91,227,176,0)}100%{box-shadow:0 0 0 0 rgba(91,227,176,0)}}
+.navlinks{display:flex;gap:4px;align-items:center}
+.navlinks a{font-size:14px;color:var(--mute);text-decoration:none;padding:8px 12px;border-radius:10px}
+.navlinks a:hover{color:var(--fg);background:var(--panel2)}
+.navbtns{display:flex;gap:6px}
+.navbtns .btn{padding:8px 14px;font-size:13px}
+@media (max-width:860px){.navlinks{display:none}}
+@media (max-width:440px){#cmdBtn{display:none}}
+
+/* hero */
+.hero{padding-block:28px 40px}
+.hero-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+#heroCanvas{width:100%;height:clamp(200px,30vw,340px);display:block;cursor:crosshair;touch-action:pan-y}
+.role{font-family:var(--display);font-size:clamp(20px,3vw,30px);font-weight:600;text-align:center;margin-top:4px}
+.role .typed{color:var(--amber)}
+.caret{display:inline-block;width:.55em;height:1em;background:var(--amber);vertical-align:-.12em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:var(--mute);background:var(--panel)}
+.chip b{color:var(--fg);font-weight:500}
+.chip.ok{border-color:rgba(91,227,176,.4);color:var(--mint)}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.bootgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:44px}
+@media (max-width:760px){.bootgrid{grid-template-columns:1fr}}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}
+.winbar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--mute)}
+.winbar i{width:10px;height:10px;border-radius:50%;background:var(--line);display:inline-block}
+.winbar span{margin-left:8px}
+.term{font-family:var(--mono);font-size:13px;padding:16px;min-height:190px;white-space:pre-wrap;word-break:break-word}
+.term .p{color:var(--violet)} .term .k{color:var(--mint)} .term .a{color:var(--amber)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+.stat{background:var(--panel);padding:18px}
+.stat .n{font-family:var(--display);font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n em{font-style:normal;color:var(--amber)}
+.stat .l{font-size:13px;color:var(--mute);margin-top:6px}
+
+/* agent chat */
+.agent{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start}
+@media (max-width:860px){.agent{grid-template-columns:1fr}}
+.agent h2{margin-top:14px}
+.agent .lede{margin-top:16px}
+.suggest{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.suggest button{font:500 13px var(--body);background:transparent;color:var(--fg);border:1px dashed var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .2s}
+.suggest button:hover{border-style:solid;border-color:var(--violet);background:rgba(156,140,255,.1)}
+.chat{display:flex;flex-direction:column;height:500px}
+.msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.msg{max-width:88%;padding:12px 15px;border-radius:14px;font-size:15px;line-height:1.55;animation:pop .35s ease}
+@keyframes pop{from{transform:translateY(8px);opacity:.3}}
+.msg.u{align-self:flex-end;background:var(--violet);color:#120E2B;border-bottom-right-radius:4px}
+.msg.b{align-self:flex-start;background:var(--panel2);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg .trace{display:block;font-family:var(--mono);font-size:11.5px;color:var(--mute);margin-bottom:6px}
+.msg .trace b{color:var(--mint);font-weight:500}
+.msg ul{margin:6px 0 0;padding-left:18px}
+.chatform{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.chatform input{flex:1;min-width:0;background:var(--ink);border:1px solid var(--line);border-radius:12px;color:var(--fg);font:15px var(--body);padding:12px 14px}
+.chatform input:focus{outline:none;border-color:var(--violet)}
+.chatform button{border-radius:12px}
+.thinking span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mute);margin-right:4px;animation:bob 1s infinite}
+.thinking span:nth-child(2){animation-delay:.15s}.thinking span:nth-child(3){animation-delay:.3s}
+@keyframes bob{50%{transform:translateY(-5px);background:var(--violet)}}
+
+/* pipeline */
+.pipe{position:relative;margin-top:48px;display:flex;flex-direction:column;gap:22px}
+.pipe .track{position:absolute;left:23px;top:8px;bottom:8px;width:2px;background:var(--line);border-radius:2px}
+.pipe .fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--violet),var(--amber));border-radius:2px;box-shadow:0 0 14px var(--violet)}
+.node{display:grid;grid-template-columns:48px 1fr;gap:18px;position:relative}
+.node .pin{width:48px;height:48px;border-radius:14px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--mute);z-index:1;transition:all .4s}
+.node.on .pin{border-color:var(--amber);color:var(--amber);box-shadow:0 0 0 5px rgba(255,181,71,.12)}
+.node .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;min-width:0;transition:border-color .4s,transform .4s}
+.node.on .card{border-color:#3A4770}
+.node .meta{font-family:var(--mono);font-size:12px;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 14px}
+.node h3{font-size:22px;margin-top:8px}
+.node h3 small{font-family:var(--body);font-size:15px;font-weight:500;color:var(--mute)}
+.node ul{margin:12px 0 0;padding-left:18px;color:#C8CEE2}
+.node li{margin-top:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-family:var(--mono);font-size:11.5px;padding:4px 9px;border-radius:7px;background:var(--panel2);color:var(--violet);border:1px solid var(--line)}
+.node.live .pin{background:var(--mint);color:#062A1E;border-color:var(--mint)}
+
+/* shipped */
+.ship{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;margin-top:44px}
+@media (max-width:860px){.ship{grid-template-columns:1fr}}
+.ship-copy h3{font-size:clamp(26px,3.6vw,38px)}
+.ship-copy p{color:#C8CEE2;margin-top:14px;max-width:58ch}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+@media (max-width:520px){.metrics{grid-template-columns:1fr}}
+.metric{border-top:2px solid var(--amber);padding-top:12px}
+.metric .n{font-family:var(--display);font-size:26px;font-weight:800}
+.metric .l{font-size:13px;color:var(--mute)}
+.stores{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.store{font-family:var(--mono);font-size:12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(91,227,176,.35);color:var(--mint);border-radius:10px;padding:8px 12px}
+.stage{perspective:1000px;display:grid;place-items:center;padding-block:10px}
+.phone{width:260px;max-width:100%;aspect-ratio:9/18.5;border-radius:38px;background:#05070E;border:1px solid #2B3557;padding:12px;box-shadow:0 40px 80px -30px rgba(156,140,255,.45),inset 0 0 0 4px #141B30;transform:rotateY(-14deg) rotateX(6deg);transition:transform .15s ease-out;transform-style:preserve-3d}
+.screen{width:100%;height:100%;border-radius:28px;overflow:hidden;background:#0E1424;position:relative}
+.notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:80px;height:20px;border-radius:12px;background:#05070E;z-index:3}
+.feed{position:absolute;inset:0;padding:40px 12px 12px;display:flex;flex-direction:column;gap:10px;animation:scrollfeed 14s linear infinite}
+@keyframes scrollfeed{to{transform:translateY(-50%)}}
+.fc{background:#172038;border-radius:12px;padding:10px;display:flex;gap:10px}
+.fc .th{width:54px;height:54px;border-radius:9px;flex:none}
+.fc .ln{flex:1;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.fc .ln i{display:block;height:7px;border-radius:4px;background:#2A3557}
+.fc .ln i:first-child{background:#3B4870;width:90%}
+.fc .ln i:last-child{width:55%}
+.tabbar{position:absolute;bottom:0;left:0;right:0;height:46px;background:rgba(14,20,36,.95);border-top:1px solid #222C48;display:flex;justify-content:space-around;align-items:center;z-index:2}
+.tabbar i{width:18px;height:18px;border-radius:6px;background:#2A3557}
+.tabbar i.a{background:var(--amber)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:40px}
+@media (max-width:860px){.skills{grid-template-columns:1fr}}
+#skillCanvas{width:100%;height:440px;display:block;cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;border-top:1px solid var(--line)}
+.legend button{font:500 12px var(--mono);background:transparent;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:5px 10px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.legend button[aria-pressed="true"]{color:var(--fg);border-color:var(--fg)}
+.legend button i{width:8px;height:8px;border-radius:50%}
+.evidence{padding:22px}
+.evidence .k{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.evidence h3{font-size:30px;margin-top:6px}
+.evidence .grp{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:6px}
+.evidence p{margin-top:16px;color:#C8CEE2}
+.evidence .where{margin-top:18px;font-size:13px;color:var(--mute);border-top:1px dashed var(--line);padding-top:14px}
+
+/* ai workflow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px;position:relative}
+@media (max-width:860px){.flow{grid-template-columns:1fr}}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden;min-width:0}
+.step .no{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.step h3{font-size:19px;margin-top:10px}
+.step p{font-size:14px;color:var(--mute);margin-top:8px}
+.step.hot{border-color:var(--amber)}
+.step.hot .no{color:var(--amber)}
+.step::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--amber)}
+.step.hot::after{animation:bar 1.6s linear forwards}
+@keyframes bar{to{width:100%}}
+.human{margin-top:16px;font-family:var(--mono);font-size:13px;color:var(--mint)}
+
+/* contact */
+.contact{text-align:center}
+.contact h2{font-size:clamp(38px,8vw,96px)}
+.contact h2 .acc,.contact h2 .acc span{color:var(--amber)}
+@media (hover:none){.kbdhint{display:none}}
+.contact .lede{margin:18px auto 0}
+.contact .cta{margin-top:30px}
+footer{padding-block:30px 50px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* recruiter mode */
+#resume{background:#F7F6F2;color:#16181F;border-radius:20px;padding:clamp(22px,5vw,56px);margin-block:24px 60px}
+#resume h1{font-size:clamp(34px,5vw,52px)}
+#resume .sub{color:#4A4F60;margin-top:8px}
+#resume h2{font-size:14px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8A5A00;margin-top:34px;padding-bottom:8px;border-bottom:1px solid #DDDAD0}
+#resume .job{margin-top:18px}
+#resume .job .h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;font-weight:600}
+#resume .job .h span{font-weight:400;color:#5A5F70;font-variant-numeric:tabular-nums}
+#resume ul{margin:8px 0 0;padding-left:18px}
+#resume li{margin-top:3px}
+#resume .rtop{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+#resume .rbtn{background:#16181F;color:#F7F6F2;border-color:#16181F}
+body.recruiter .os{display:none}
+
+/* command palette */
+#palette{position:fixed;inset:0;z-index:100;background:rgba(5,7,14,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:start center;padding:15vh 16px 16px}
+.pal{width:min(560px,100%);background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.pal input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--fg);font:16px var(--body);padding:16px 18px}
+.pal input:focus{outline:none}
+.pal ul{list-style:none;margin:0;padding:6px;max-height:320px;overflow:auto}
+.pal li{padding:10px 12px;border-radius:10px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.pal li span{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.pal li.sel{background:var(--panel2);color:var(--amber)}
+
+/* ===== scroll FX layer ===== */
+#prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--violet),var(--amber),var(--mint));z-index:70}
+#bggrid{position:fixed;inset:-20% 0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 40%,#000 10%,transparent 70%)}
+.orb{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;opacity:.35}
+#orb1{width:380px;height:380px;background:var(--violet);top:10%;left:-120px}
+#orb2{width:320px;height:320px;background:var(--amber);top:55%;right:-120px;opacity:.18}
+#cur,#curDot{position:fixed;top:0;left:0;pointer-events:none;z-index:120;border-radius:50%;transform:translate(-100px,-100px)}
+#cur{width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid var(--amber);transition:width .25s,height .25s,margin .25s,background .25s,border-color .25s;mix-blend-mode:difference}
+#cur.big{width:74px;height:74px;margin:-37px 0 0 -37px;background:rgba(255,181,71,.15);border-color:var(--violet)}
+#curDot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--amber)}
+@media (hover:none){#cur,#curDot{display:none}}
+#hud{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:55;font-family:var(--mono);font-size:11px;color:var(--mute);background:rgba(16,23,42,.8);border:1px solid var(--line);border-radius:10px;padding:8px 12px;backdrop-filter:blur(10px);display:flex;gap:10px;align-items:center}
+#hud b{color:var(--amber);font-weight:500;min-width:7ch;display:inline-block}
+#hud .bar{width:60px;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+#hud .bar i{display:block;height:100%;width:0;background:var(--amber)}
+@media (max-width:700px){#hud{display:none}}
+body.recruiter #hud,body.recruiter #bggrid,body.recruiter .orb{display:none}
+/* word reveal */
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.split .w>span{display:inline-block;transform:translateY(0);transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s;transition-delay:calc(var(--i)*45ms)}
+.split.pre .w>span{transform:translateY(105%);opacity:.15}
+.rv{transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s}
+.rv.pre{transform:translateY(28px) scale(.98);opacity:.4}
+/* marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:18px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));position:relative;z-index:1;background:rgba(16,23,42,.5)}
+.mq{display:flex;gap:42px;width:max-content;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,58px);white-space:nowrap;will-change:transform}
+.mq span{display:flex;align-items:center;gap:42px}
+.mq span::after{content:"✦";color:var(--amber);font-size:.5em}
+.mq .o{color:transparent;-webkit-text-stroke:1px var(--mute)}
+.marquee.two{transform:rotate(-2deg);background:var(--amber);border:0;margin-top:-6px}
+.marquee.two .mq{color:#1A1204;font-size:clamp(18px,3vw,30px)}
+.marquee.two .mq span::after{color:#1A1204}
+/* scrub statement */
+.statement{padding-block:clamp(60px,10vw,130px)}
+.statement p{font-family:var(--display);font-weight:800;font-size:clamp(32px,6vw,78px);line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+.statement .sw{color:#2A3352;transition:color .25s}
+.statement .sw.lit{color:var(--fg)}
+.statement .sw.hl.lit{color:var(--amber)}
+/* horizontal pinned */
+.hscroll{position:relative;height:320vh;padding:0}
+.hpin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.htrack{display:flex;gap:24px;will-change:transform;margin-top:36px;padding-right:20vw}
+.hcard{flex:none;width:min(420px,78vw);height:min(440px,56vh);border-radius:24px;padding:30px;position:relative;overflow:hidden;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;justify-content:space-between}
+.hcard .big{font-family:var(--display);font-weight:800;font-size:clamp(60px,9vw,110px);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--line)}
+.hcard h3{font-size:clamp(24px,3vw,32px)}
+.hcard p{color:var(--mute);margin-top:10px}
+.hcard .glow{position:absolute;width:260px;height:260px;border-radius:50%;filter:blur(60px);opacity:.35;right:-60px;top:-60px}
+.hcount{font-family:var(--mono);font-size:13px;color:var(--mute);margin-top:22px;display:flex;gap:12px;align-items:center}
+.hcount .bar{flex:0 0 160px;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.hcount .bar i{display:block;height:100%;width:0;background:var(--amber)}
+@media (max-height:480px){.hscroll{height:auto}.hpin{position:static;height:auto;padding-block:60px}.htrack{overflow-x:auto;transform:none!important;padding-bottom:12px}}
+/* tilt + spotlight */
+.tilt{transform-style:preserve-3d;transition:transform .2s ease-out}
+.spot{position:relative}
+.spot::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(255,181,71,.12),transparent 45%)}
+.spot:hover::before{opacity:1}
+.scramble{font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav class="top wrap">
+  <div class="navbar">
+    <div class="logo"><span class="dot"></span>yagnesh.os</div>
+    <div class="navlinks os">
+      <a href="#agent">Ask my agent</a><a href="#career">Career</a><a href="#shipped">Shipped</a><a href="#skills">Skills</a><a href="#ai">AI workflow</a>
+    </div>
+    <div class="navbtns">
+      <button class="btn" id="cmdBtn" type="button" aria-label="Open command palette"><kbd>/</kbd> Commands</button>
+      <button class="btn primary" id="recBtn" type="button" aria-pressed="false">Recruiter mode</button>
+    </div>
+  </div>
+</nav>
+
+<div id="prog"></div><div id="bggrid" class="os"></div><div class="orb os" id="orb1"></div><div class="orb os" id="orb2"></div>
+<div id="cur"></div><div id="curDot"></div>
+<div id="hud" class="os" aria-hidden="true"><span>section</span><b id="hudName">boot</b><span class="bar"><i id="hudBar"></i></span></div>
+<main class="wrap">
+  <!-- HERO -->
+  <header class="hero os" id="top">
+    <div class="hero-top"><span>agent_os · session: recruiter_visit</span><span id="clock">Mumbai, IN</span></div>
+    <h1 class="sr">Yagnesh Vaja, Frontend Developer</h1>
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <p class="role">Frontend developer who builds <span class="typed" id="typed">mobile apps with React Native</span><span class="caret"></span></p>
+    <div class="chips">
+      <span class="chip ok">● Open to work</span>
+      <span class="chip">📍 <b>Mumbai</b> · On-site / Hybrid</span>
+      <span class="chip">Now at <b>Cyberax</b></span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#agent">Ask my AI agent →</a>
+      <a class="btn" href="#shipped">See what I shipped</a>
+    </div>
+
+    <div class="bootgrid">
+      <div class="win">
+        <div class="winbar"><i></i><i></i><i></i><span>boot.log</span></div>
+        <div class="term" id="term"></div>
+      </div>
+      <div class="win">
+        <div class="winbar"><i></i><i></i><i></i><span>system.stats</span></div>
+        <div class="stats">
+          <div class="stat"><div class="n"><em>2</em></div><div class="l">App stores the app is live on</div></div>
+          <div class="stat"><div class="n">0→1</div><div class="l">Mobile frontend built from scratch</div></div>
+          <div class="stat"><div class="n" data-count="18">0</div><div class="l">Months shipping UI at Cyberax</div></div>
+          <div class="stat"><div class="n">Web<em>+</em>App</div><div class="l">One product, both platforms</div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="marquee os" style="margin-top:40px"><div class="mq" data-dir="-1">
+    <span>React Native</span><span class="o">Expo</span><span>TypeScript</span><span class="o">Tailwind CSS</span><span>Astro</span><span class="o">React.js</span><span>REST APIs</span><span class="o">AI agents</span>
+    <span>React Native</span><span class="o">Expo</span><span>TypeScript</span><span class="o">Tailwind CSS</span><span>Astro</span><span class="o">React.js</span><span>REST APIs</span><span class="o">AI agents</span>
+  </div></div>
+  <div class="marquee two os"><div class="mq" data-dir="1">
+    <span>Live on Google Play</span><span>Live on the App Store</span><span>Open to work</span><span>Mumbai · Hybrid</span><span>Built from scratch</span>
+    <span>Live on Google Play</span><span>Live on the App Store</span><span>Open to work</span><span>Mumbai · Hybrid</span><span>Built from scratch</span>
+  </div></div>
+
+  <!-- AGENT -->
+  <section id="agent" class="os">
+    <div class="agent">
+      <div>
+        <div class="eyebrow">Ask my agent</div>
+        <h2>Skip the resume. Ask me anything.</h2>
+        <p class="lede">This agent knows my work history, stack and availability. Ask it a question the way you would in a screening call.</p>
+        <div class="suggest" id="suggest">
+          <button type="button">What has he shipped?</button>
+          <button type="button">React Native experience?</button>
+          <button type="button">How does he use AI?</button>
+          <button type="button">Is he available?</button>
+          <button type="button">Tech stack?</button>
+          <button type="button">Web work?</button>
+        </div>
+      </div>
+      <div class="win chat">
+        <div class="winbar"><i></i><i></i><i></i><span>yagnesh-agent · online</span></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+        <form class="chatform" id="chatform">
+          <label for="q" class="sr">Ask a question</label>
+          <input id="q" autocomplete="off" placeholder="e.g. Can he work hybrid in Mumbai?">
+          <button class="btn primary" type="submit">Ask</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement os" id="statement">
+    <div class="eyebrow">Mission</div>
+    <p id="scrub" style="margin-top:22px">I turn ideas into <span class="hl">apps people download</span>, websites that load fast, and interfaces that feel effortless on every screen.</p>
+  </section>
+
+  <!-- CAREER -->
+  <section id="career" class="os">
+    <div class="eyebrow">Career pipeline</div>
+    <h2>Each stage feeds the next.</h2>
+    <div class="pipe" id="pipe">
+      <div class="track"><div class="fill" id="pipeFill"></div></div>
+      <div class="node">
+        <div class="pin">'24</div>
+        <div class="card">
+          <div class="meta"><span>Jan 2024 – Mar 2024 · 3 mos</span><span>Mumbai</span></div>
+          <h3>Web Development Intern <small>· Raviva Infotech</small></h3>
+          <ul>
+            <li>Built responsive, cross-browser UI components with HTML5, CSS3, Bootstrap and JavaScript.</li>
+            <li>Integrated REST APIs and implemented CRUD functionality.</li>
+            <li>Improved front-end performance with code minification and lazy loading.</li>
+          </ul>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span><span class="tag">JavaScript</span><span class="tag">REST</span></div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="pin">'25</div>
+        <div class="card">
+          <div class="meta"><span>May 2025 – Present</span><span>Cyberax · Full-time</span><span>Mumbai</span></div>
+          <h3>Frontend Developer <small>· India Forums web</small></h3>
+          <ul>
+            <li>Modernized the India Forums website UI: redesigned key pages, migrated legacy CSS to Tailwind CSS, and made the site mobile-responsive.</li>
+            <li>Redesigned the Forums section layout for better readability and navigation.</li>
+            <li>Built UI with Astro, React.js, JavaScript, HTML and Tailwind CSS, integrating REST APIs from the backend team.</li>
+          </ul>
+          <div class="tags"><span class="tag">Astro</span><span class="tag">React.js</span><span class="tag">Tailwind CSS</span><span class="tag">REST APIs</span></div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="pin">app</div>
+        <div class="card">
+          <div class="meta"><span>Cyberax · India Forums mobile</span></div>
+          <h3>Mobile app frontend, from zero</h3>
+          <ul>
+            <li>Built the India Forums mobile app frontend from scratch with React Native, Expo and TypeScript: screens, navigation, state management and reusable components.</li>
+            <li>Wired the backend team's REST APIs into the app's UI flows.</li>
+          </ul>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span><span class="tag">State mgmt</span></div>
+        </div>
+      </div>
+      <div class="node live">
+        <div class="pin">✓</div>
+        <div class="card">
+          <div class="meta"><span>Released</span></div>
+          <h3>Live on Google Play and the App Store</h3>
+          <ul><li>Real users on Android and iOS, running UI I wrote.</li></ul>
+        </div>
+      </div>
+      <div class="node">
+        <div class="pin">next</div>
+        <div class="card">
+          <div class="meta"><span>Now</span></div>
+          <h3>Your team? <small>· open to work</small></h3>
+          <ul><li>Looking for frontend or React Native roles in Mumbai, on-site or hybrid.</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHIPPED -->
+  <section id="shipped" class="os">
+    <div class="eyebrow">Shipped to production</div>
+    <h2>An app people download.</h2>
+    <div class="ship">
+      <div class="ship-copy">
+        <h3>India Forums mobile app</h3>
+        <p>A cross-platform app for the India Forums media platform. I developed the frontend: screen UI, navigation, state management, reusable components and integration with REST APIs built by a separate backend team.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">iOS + Android</div><div class="l">One TypeScript codebase</div></div>
+          <div class="metric"><div class="n">From scratch</div><div class="l">No existing app to start from</div></div>
+          <div class="metric"><div class="n">Expo</div><div class="l">React Native toolchain</div></div>
+        </div>
+        <div class="stores"><span class="store">✓ Google Play Store</span><span class="store">✓ Apple App Store</span></div>
+      </div>
+      <div class="stage" id="stage">
+        <div class="phone" id="phone">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="feed" id="feed"></div>
+            <div class="tabbar"><i class="a"></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORIZONTAL -->
+  <section class="hscroll os" id="bring">
+    <div class="hpin">
+      <div class="eyebrow">What I bring</div>
+      <h2 style="margin-top:14px">Five things your team gets.</h2>
+      <div class="htrack" id="htrack">
+        <div class="hcard spot"><div class="glow" style="background:var(--amber)"></div><div class="big">0→1</div><div><h3>I build from zero</h3><p>The India Forums app frontend started as an empty repo. Now it's in two app stores.</p></div></div>
+        <div class="hcard spot"><div class="glow" style="background:var(--violet)"></div><div class="big">2×</div><div><h3>Web and mobile</h3><p>One developer for both platforms: Astro and React on web, React Native on mobile.</p></div></div>
+        <div class="hcard spot"><div class="glow" style="background:var(--mint)"></div><div class="big">API</div><div><h3>Clean handoffs</h3><p>I plug backend REST APIs into real UI flows and work closely with backend teams.</p></div></div>
+        <div class="hcard spot"><div class="glow" style="background:#FF7A9C"></div><div class="big">CSS→TW</div><div><h3>Modernization</h3><p>Migrated legacy CSS to Tailwind and made an existing site fully responsive.</p></div></div>
+        <div class="hcard spot"><div class="glow" style="background:#58B7FF"></div><div class="big">AI+</div><div><h3>Agent speed, human care</h3><p>Copilot and Claude for speed. My own review and testing before every merge.</p></div></div>
+      </div>
+      <div class="hcount"><span id="hnum">01 / 05</span><span class="bar"><i id="hbar"></i></span><span class="kbdhint">keep scrolling</span></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="os">
+    <div class="eyebrow">Skill graph</div>
+    <h2>Every skill, with proof.</h2>
+    <p class="lede" style="margin-top:16px">Pick a node to see where I used it. Move your cursor through the graph to pull the network around.</p>
+    <div class="skills">
+      <div class="win">
+        <div class="winbar"><i></i><i></i><i></i><span>graph.view</span></div>
+        <canvas id="skillCanvas" aria-label="Interactive graph of skills"></canvas>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="win evidence" id="evidence" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai" class="os">
+    <div class="eyebrow">How I work with AI agents</div>
+    <h2>Faster with agents. Every line still reviewed.</h2>
+    <p class="lede" style="margin-top:16px">I use AI coding agents like GitHub Copilot and Claude to speed up development. I review and test generated code before merging it.</p>
+    <div class="flow" id="flow">
+      <div class="step"><div class="no">01</div><h3>Scope</h3><p>Break the screen or feature into components and API calls.</p></div>
+      <div class="step"><div class="no">02</div><h3>Generate</h3><p>Draft code with Copilot or Claude.</p></div>
+      <div class="step"><div class="no">03</div><h3>Review</h3><p>Read every generated line and fix what's off.</p></div>
+      <div class="step"><div class="no">04</div><h3>Test</h3><p>Check it on real devices and screen sizes.</p></div>
+      <div class="step"><div class="no">05</div><h3>Merge</h3><p>Ship only code I understand and can maintain.</p></div>
+    </div>
+    <p class="human">human_review: always_on</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact os">
+    <div class="eyebrow" style="justify-content:center">Contact</div>
+    <h2 style="margin-top:16px">Let's build<br>the <span class="acc">next app.</span></h2>
+    <p class="lede">Open to frontend and React Native roles. Mumbai, on-site or hybrid.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/yagneshvaja" target="_blank" rel="noopener">Message me on LinkedIn ↗</a>
+      <button class="btn" type="button" id="copyLi">Copy profile link</button>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <article id="resume" hidden>
+    <div class="rtop">
+      <div>
+        <h1>Yagnesh Vaja</h1>
+        <p class="sub">Frontend Developer · React.js · React Native (Expo) · TypeScript · Tailwind CSS<br>Mumbai, India · Open to on-site / hybrid · linkedin.com/in/yagneshvaja</p>
+      </div>
+      <button class="btn rbtn" type="button" id="exitRec">← Back to interactive view</button>
+    </div>
+    <h2>Summary</h2>
+    <p style="margin-top:12px">Frontend developer who built the frontend of a mobile app now live on Google Play and the App Store. Works across web (Astro, React, Tailwind) and mobile (React Native, Expo, TypeScript), integrating REST APIs from backend teams.</p>
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="h">Frontend Developer, Cyberax <span>May 2025 – Present</span></div>
+      <ul>
+        <li>Built the India Forums mobile app frontend from scratch with React Native, Expo and TypeScript (screens, navigation, state management, reusable components). Live on Google Play and the App Store.</li>
+        <li>Modernized the India Forums website UI: redesigned key pages, migrated legacy CSS to Tailwind CSS, made the site mobile-responsive.</li>
+        <li>Redesigned the Forums section layout to improve readability and navigation.</li>
+        <li>Built UI with Astro, React.js, JavaScript, HTML and Tailwind CSS; integrated REST APIs from the backend team.</li>
+        <li>Used AI coding agents (GitHub Copilot, Claude) to speed up development, reviewing and testing generated code before merging.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="h">Web Development Intern, Raviva Infotech Pvt. Ltd. <span>Jan 2024 – Mar 2024</span></div>
+      <ul>
+        <li>Built responsive, cross-browser UI components with HTML5, CSS3, Bootstrap and JavaScript.</li>
+        <li>Integrated REST APIs and implemented CRUD functionality.</li>
+        <li>Improved front-end performance with code minification and lazy loading.</li>
+      </ul>
+    </div>
+    <h2>Skills</h2>
+    <p style="margin-top:12px">React.js · React Native · Expo · TypeScript · JavaScript · Astro · Tailwind CSS · HTML5 · CSS3 · Bootstrap · REST APIs · State management · Responsive design · GitHub Copilot · Claude</p>
+    <h2>Education</h2>
+    <p style="margin-top:12px">Usha Pravin Gandhi College of Arts, Commerce and Science, Mumbai</p>
+  </article>
+
+  <footer class="os">
+    <span>© 2026 Yagnesh Vaja</span>
+    <span class="kbdhint">Press <kbd>/</kbd> for commands</span>
+  </footer>
+</main>
+
+<div id="palette" hidden>
+  <div class="pal" role="dialog" aria-label="Command palette">
+    <label for="palIn" class="sr">Type a command</label>
+    <input id="palIn" placeholder="Type a command or section…" autocomplete="off">
+    <ul id="palList"></ul>
+  </div>
+</div>
+
+<script>
+(()=>{
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s=>document.querySelector(s);
+
+/* ---------- clock ---------- */
+const clock=$('#clock');
+function tick(){try{clock.textContent='Mumbai · '+new Date().toLocaleTimeString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit'})+' IST'}catch(e){}}
+tick();setInterval(tick,30000);
+
+/* ---------- particle name ---------- */
+const hc=$('#heroCanvas'),hx=hc.getContext('2d');
+let P=[],W=0,H=0,mouse={x:-1e4,y:-1e4};
+function build(){
+  const r=hc.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
+  W=Math.floor(r.width);H=Math.floor(r.height);if(!W||!H)return;
+  hc.width=W*dpr;hc.height=H*dpr;hx.setTransform(dpr,0,0,dpr,0,0);
+  const off=document.createElement('canvas');off.width=W;off.height=H;const o=off.getContext('2d');
+  const narrow=W<640,lines=narrow?['YAGNESH','VAJA']:['YAGNESH VAJA'];
+  let fs=narrow?Math.min(W/4.6,H/2.3):Math.min(W/6.6,H*.62);
+  o.font=`800 ${fs}px "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif`;
+  const fit=()=>{o.font=`800 ${fs}px "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif`;return Math.max(...lines.map(l=>o.measureText(l).width))};
+  while(fit()>W*.92&&fs>20)fs-=2;
+  o.textAlign='center';o.textBaseline='middle';o.fillStyle='#fff';
+  const lh=fs*.92,y0=H/2-(lines.length-1)*lh/2;
+  lines.forEach((l,i)=>o.fillText(l,W/2,y0+i*lh));
+  const d=o.getImageData(0,0,W,H).data,gap=narrow?3:4;
+  const prev=P;P=[];let k=0;
+  for(let y=0;y<H;y+=gap)for(let x=0;x<W;x+=gap){
+    if(d[(y*W+x)*4+3]>140){
+      const p=prev[k++];
+      P.push({tx:x,ty:y,x:p?p.x:x+(Math.random()-.5)*W*.6,y:p?p.y:y+(Math.random()-.5)*H,vx:0,vy:0,
+        c:Math.random()<.1?'#FFB547':(Math.random()<.12?'#9C8CFF':'#E9EDF8')});
+    }
+  }
+  if(RM)P.forEach(p=>{p.x=p.tx;p.y=p.ty});
+}
+function draw(){
+  hx.clearRect(0,0,W,H);
+  for(const p of P){
+    if(!RM){
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,dd=dx*dx+dy*dy;
+      if(dd<8100){const f=(8100-dd)/8100*3.2,a=Math.atan2(dy,dx);p.vx+=Math.cos(a)*f;p.vy+=Math.sin(a)*f}
+      p.vx+=(p.tx-p.x)*.06;p.vy+=(p.ty-p.y)*.06;p.vx*=.84;p.vy*=.84;p.x+=p.vx;p.y+=p.vy;
+    }
+    hx.fillStyle=p.c;hx.fillRect(p.x,p.y,2.2,2.2);
+  }
+  if(!RM)requestAnimationFrame(draw);
+}
+function pos(e){const r=hc.getBoundingClientRect();const t=e.touches?e.touches[0]:e;mouse.x=t.clientX-r.left;mouse.y=t.clientY-r.top}
+hc.addEventListener('mousemove',pos);hc.addEventListener('touchmove',pos,{passive:true});
+hc.addEventListener('mouseleave',()=>{mouse.x=mouse.y=-1e4});hc.addEventListener('touchend',()=>{mouse.x=mouse.y=-1e4});
+hc.addEventListener('click',()=>{P.forEach(p=>{p.vx+=(Math.random()-.5)*40;p.vy+=(Math.random()-.5)*40})});
+build();draw();if(RM)draw();
+(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{build();if(RM)draw()});
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{build();if(RM)draw();sk.layout()},150)});
+
+/* ---------- typed role ---------- */
+const roles=['mobile apps with React Native','fast, responsive web UIs','interfaces with Tailwind CSS','products that ship to app stores','faster with AI agents'];
+const ty=$('#typed');
+if(!RM){let ri=0,ci=roles[0].length,del=true;
+  setTimeout(function loop(){const w=roles[ri];
+    if(del){ci--;if(ci<=0){del=false;ri=(ri+1)%roles.length}}else{ci++;if(ci>=roles[ri].length){del=true;ty.textContent=roles[ri];return setTimeout(loop,2000)}}
+    ty.textContent=roles[ri].slice(0,ci);setTimeout(loop,del?28:55)},2200);}
+
+/* ---------- boot log ---------- */
+const bootLines=[
+ ['p','$ ','mount profile --user yagnesh.vaja'],
+ ['k','✓ ','role: Frontend Developer @ Cyberax'],
+ ['p','$ ','load stack'],
+ ['a','  ','react · react-native · expo · typescript · tailwind · astro'],
+ ['p','$ ','check releases'],
+ ['k','✓ ','india-forums app → Google Play ✓  App Store ✓'],
+ ['p','$ ','agents status'],
+ ['a','  ','copilot: online · claude: online · human_review: on'],
+ ['k','✓ ','status: open to work · Mumbai · on-site / hybrid'],
+];
+const term=$('#term');
+function lineHTML(l){return `<span class="${l[0]}">${l[1]}</span>${l[2]}`}
+if(RM){term.innerHTML=bootLines.map(lineHTML).join('\n')}
+else{let i=0,c=0;term.innerHTML='';
+  (function step(){if(i>=bootLines.length){term.innerHTML+='<span class="caret"></span>';return}
+    const l=bootLines[i];c+=3;const done=bootLines.slice(0,i).map(lineHTML).join('\n');
+    term.innerHTML=(done?done+'\n':'')+`<span class="${l[0]}">${l[1]}</span>`+l[2].slice(0,c);
+    if(c>=l[2].length){i++;c=0;setTimeout(step,120)}else setTimeout(step,14)})();}
+
+/* ---------- count-up ---------- */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  // months since May 2025
+  const now=new Date(),m=(now.getFullYear()-2025)*12+(now.getMonth()-4)+1;
+  const target=Math.max(1,m);
+  el.dataset.count=target;
+  if(RM){el.textContent=target;return}
+  let v=0;const t=setInterval(()=>{v++;el.textContent=v;if(v>=target)clearInterval(t)},60);
+});
+
+/* ---------- agent ---------- */
+const KB=[
+ {k:['ship','built','build','project','portfolio','work on','made','app store','play store','product'],src:'projects/india-forums.json',
+  a:`He built the frontend of the <b>India Forums mobile app</b> from scratch with React Native, Expo and TypeScript. It's live on <b>Google Play</b> and the <b>Apple App Store</b>.<ul><li>Screens, navigation, state management, reusable components</li><li>Wired REST APIs from a separate backend team into the UI</li></ul>He also modernized the India Forums website.`},
+ {k:['react native','mobile','expo','ios','android','native'],src:'experience/cyberax.json#mobile',
+  a:`At Cyberax he built the India Forums app frontend from zero using <b>React Native + Expo + TypeScript</b>. That covered every screen, navigation, state management and a library of reusable components. The app is live on both stores.`},
+ {k:['web','website','astro','tailwind','css','responsive','html','redesign'],src:'experience/cyberax.json#web',
+  a:`On the web side he modernized the India Forums site: redesigned key pages, <b>migrated legacy CSS to Tailwind</b>, made it mobile-responsive, and redesigned the Forums section for readability. Stack: Astro, React.js, JavaScript, HTML, Tailwind.`},
+ {k:['ai','agent','copilot','claude','llm','gpt','automation'],src:'workflow/ai.json',
+  a:`He uses AI coding agents (<b>GitHub Copilot</b> and <b>Claude</b>) to speed up development. He reviews and tests all generated code before merging, so he moves fast without shipping code he doesn't understand.`},
+ {k:['available','availability','open','hire','hiring','notice','job','looking','join'],src:'status.json',
+  a:`Yes. He's <b>open to work</b> and looking for frontend or React Native roles in <b>Mumbai</b>, on-site or hybrid. The quickest way to reach him is a LinkedIn message.`},
+ {k:['where','location','based','relocat','remote','hybrid','onsite','on-site','mumbai','city'],src:'status.json#location',
+  a:`He's based in <b>Mumbai, Maharashtra</b> and open to <b>on-site or hybrid</b> roles.`},
+ {k:['stack','skill','tech','tools','languages','know','framework'],src:'skills.json',
+  a:`Core stack:<ul><li><b>Mobile:</b> React Native, Expo, TypeScript, state management</li><li><b>Web:</b> React.js, Astro, Tailwind CSS, JavaScript, HTML5, CSS3, Bootstrap</li><li><b>Integration:</b> REST APIs, CRUD</li><li><b>AI tooling:</b> GitHub Copilot, Claude</li></ul>`},
+ {k:['typescript','ts','javascript','js'],src:'skills.json#languages',
+  a:`He writes <b>TypeScript</b> for the React Native app and <b>JavaScript</b> on the web side with React.js and Astro.`},
+ {k:['intern','raviva','first','start','career begin'],src:'experience/raviva.json',
+  a:`He started as a <b>Web Development Intern at Raviva Infotech</b> (Jan–Mar 2024). He built responsive, cross-browser components with HTML5, CSS3, Bootstrap and JS, integrated REST APIs with CRUD, and improved performance with minification and lazy loading.`},
+ {k:['experience','years','how long','background','current','cyberax','role','summary','about','who'],src:'experience/*.json',
+  a:`He's a <b>Frontend Developer at Cyberax</b> (since May 2025), working on the India Forums web platform and mobile app with the backend team and engineering manager. Before that he interned at Raviva Infotech in 2024.`},
+ {k:['educat','college','degree','study','university'],src:'education.json',
+  a:`He studied at <b>Usha Pravin Gandhi College of Arts, Commerce and Science</b> in Mumbai.`},
+ {k:['performance','fast','speed','optimi','lazy'],src:'experience/raviva.json#perf',
+  a:`He has improved front-end performance with <b>code minification and lazy loading</b>, and builds mobile-first responsive layouts with Tailwind.`},
+ {k:['team','backend','api','collab','work with'],src:'experience/cyberax.json#team',
+  a:`He works alongside a <b>separate backend team</b> and an engineering manager, integrating their REST APIs into web and mobile UI flows.`},
+ {k:['contact','email','reach','linkedin','call','message','phone'],src:'contact.json',
+  a:`Message him on LinkedIn: <b>linkedin.com/in/yagneshvaja</b>. There's a button at the bottom of this page.`},
+ {k:['hello','hi','hey','yo'],src:'greeting',
+  a:`Hi! I'm Yagnesh's portfolio agent. Ask me about his shipped app, his stack, how he uses AI, or his availability.`},
+];
+const msgs=$('#msgs');
+function answer(q){
+  const s=q.toLowerCase();let best=null,score=0;
+  for(const e of KB){let sc=0;for(const k of e.k)if(s.includes(k))sc+=k.length;if(sc>score){score=sc;best=e}}
+  return best||{src:'fallback',a:`I don't have that in my files yet. Try asking about his <b>shipped app</b>, <b>React Native</b>, <b>web work</b>, <b>AI workflow</b> or <b>availability</b>.`};
+}
+function addUser(t){const d=document.createElement('div');d.className='msg u';d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+function addBot(e,instant){
+  const d=document.createElement('div');d.className='msg b';msgs.appendChild(d);
+  const trace=`<span class="trace">↳ read <b>${e.src}</b></span>`;
+  if(instant||RM){d.innerHTML=trace+e.a;msgs.scrollTop=msgs.scrollHeight;return Promise.resolve()}
+  d.innerHTML='<span class="thinking"><span></span><span></span><span></span></span>';msgs.scrollTop=msgs.scrollHeight;
+  return new Promise(res=>setTimeout(()=>{
+    // stream by revealing text nodes progressively
+    const tmp=document.createElement('div');tmp.innerHTML=e.a;
+    const full=e.a;let i=0;d.innerHTML=trace;const body=document.createElement('div');d.appendChild(body);
+    const plainLen=tmp.textContent.length;
+    (function s(){i+=4;body.innerHTML=cut(full,i);msgs.scrollTop=msgs.scrollHeight;if(i<plainLen)setTimeout(s,12);else{body.innerHTML=full;res()}})();
+  },650));
+}
+function cut(html,n){ // keep first n text chars, keep tags
+  let out='',c=0,inTag=false;
+  for(const ch of html){if(ch==='<')inTag=true;if(inTag){out+=ch;if(ch==='>')inTag=false;continue}if(c>=n)continue;out+=ch;c++}
+  return out;
+}
+let busy=false;
+async function ask(q){if(!q.trim()||busy)return;busy=true;addUser(q);await addBot(answer(q));busy=false}
+$('#chatform').addEventListener('submit',e=>{e.preventDefault();const i=$('#q');const v=i.value;i.value='';ask(v)});
+$('#suggest').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')ask(e.target.textContent)});
+// seeded example exchange
+addBot({src:'greeting',a:`Hi, I'm Yagnesh's portfolio agent. Ask about his work, stack or availability.`},true);
+addUser('What has he shipped?');addBot(KB[0],true);
+
+/* ---------- pipeline fill ---------- */
+const pipe=$('#pipe'),fill=$('#pipeFill'),nodes=[...pipe.querySelectorAll('.node')];
+function onScroll(){
+  const r=pipe.getBoundingClientRect(),vh=innerHeight;
+  const p=Math.min(1,Math.max(0,(vh*.65-r.top)/r.height));
+  fill.style.height=(p*100)+'%';
+  nodes.forEach(n=>{const nr=n.getBoundingClientRect();n.classList.toggle('on',nr.top<vh*.65)});
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- phone ---------- */
+const feed=$('#feed'),cols=['#FFB547','#9C8CFF','#5BE3B0','#FF7A9C','#58B7FF','#F5D76E'];
+let fh='';for(let r=0;r<2;r++)for(let i=0;i<8;i++)fh+=`<div class="fc"><div class="th" style="background:linear-gradient(135deg,${cols[i%6]},#1E2846)"></div><div class="ln"><i></i><i></i><i></i></div></div>`;
+feed.innerHTML=fh;
+const stage=$('#stage'),phone=$('#phone');
+stage.addEventListener('mousemove',e=>{const r=stage.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;phone.style.transform=`rotateY(${x*30}deg) rotateX(${-y*20}deg)`});
+stage.addEventListener('mouseleave',()=>{phone.style.transform=''});
+
+/* ---------- skill graph ---------- */
+const GROUPS={Mobile:'#FFB547',Web:'#58B7FF',Integration:'#5BE3B0',Craft:'#FF7A9C','AI tools':'#9C8CFF'};
+const SK=[
+ ['React Native','Mobile','Built the India Forums app frontend from scratch: screens, navigation and reusable components.','Cyberax · 2025–now'],
+ ['Expo','Mobile','Expo toolchain for the India Forums app, now live on Google Play and the App Store.','Cyberax · 2025–now'],
+ ['TypeScript','Mobile','The India Forums mobile codebase is written in TypeScript.','Cyberax · 2025–now'],
+ ['State management','Mobile','Designed app state for screens and API-driven UI flows in the mobile app.','Cyberax · 2025–now'],
+ ['Navigation','Mobile','Built the app\'s navigation structure across all screens.','Cyberax · 2025–now'],
+ ['React.js','Web','Built India Forums web UI with React.js.','Cyberax · 2025–now'],
+ ['Astro','Web','India Forums web platform built with Astro.','Cyberax · 2025–now'],
+ ['Tailwind CSS','Web','Migrated India Forums legacy CSS to Tailwind and made the site mobile-responsive.','Cyberax · 2025–now'],
+ ['JavaScript','Web','Used across web work at Cyberax and during the Raviva internship.','Cyberax · Raviva'],
+ ['HTML5','Web','Semantic markup for India Forums pages and internship UI components.','Cyberax · Raviva'],
+ ['CSS3','Web','Responsive, cross-browser UI components.','Raviva · 2024'],
+ ['Bootstrap','Web','Responsive components during the Raviva internship.','Raviva · 2024'],
+ ['REST APIs','Integration','Integrated backend REST APIs into both the web platform and the mobile app.','Cyberax · Raviva'],
+ ['CRUD','Integration','Implemented CRUD functionality against REST APIs.','Raviva · 2024'],
+ ['Responsive UI','Craft','Made India Forums mobile-responsive and redesigned the Forums layout for readability.','Cyberax · 2025–now'],
+ ['Reusable components','Craft','Built a reusable component set for the mobile app.','Cyberax · 2025–now'],
+ ['Performance','Craft','Improved load performance with code minification and lazy loading.','Raviva · 2024'],
+ ['UI redesign','Craft','Redesigned key India Forums pages and the Forums section layout.','Cyberax · 2025–now'],
+ ['GitHub Copilot','AI tools','Uses Copilot to speed up development, then reviews and tests the output.','Cyberax · 2025–now'],
+ ['Claude','AI tools','Uses Claude as a coding agent, with human review before every merge.','Cyberax · 2025–now'],
+ ['Code review','AI tools','Reviews and tests all AI-generated code before merging.','Cyberax · 2025–now'],
+];
+const sc=$('#skillCanvas'),sx=sc.getContext('2d'),ev=$('#evidence'),legend=$('#legend');
+let N=[],SW=0,SH=0,sel=0,hover=-1,filter=null,sm={x:-1e4,y:-1e4};
+const centers={Mobile:[.28,.3],Web:[.72,.3],Integration:[.5,.56],Craft:[.27,.78],'AI tools':[.73,.78]};
+const sk={layout(){
+  const r=sc.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);SW=r.width;SH=r.height;if(!SW)return;
+  sc.width=SW*dpr;sc.height=SH*dpr;sx.setTransform(dpr,0,0,dpr,0,0);
+  const counts={};N=SK.map((s,i)=>{const g=s[1];counts[g]=(counts[g]||0)+1;return{i,g}});
+  const idx={};N.forEach(n=>{const tot=counts[n.g];idx[n.g]=(idx[n.g]||0);const a=idx[n.g]++/tot*Math.PI*2+ (n.g.length);
+    const c=centers[n.g],rad=Math.min(SW,SH)*(SW<500?.16:.19);
+    n.hx=c[0]*SW+Math.cos(a)*rad;n.hy=c[1]*SH+Math.sin(a)*rad*.8;n.x=n.x||n.hx;n.y=n.y||n.hy;n.ph=Math.random()*6.28});
+}};
+sk.layout();
+Object.entries(GROUPS).forEach(([g,c])=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed','false');b.innerHTML=`<i style="background:${c}"></i>${g}`;
+  b.onclick=()=>{filter=filter===g?null:g;[...legend.children].forEach(x=>x.setAttribute('aria-pressed',x===b&&filter?'true':'false'));if(filter){sel=SK.findIndex(s=>s[1]===g);showEv()}};legend.appendChild(b)});
+function showEv(){const s=SK[sel],c=GROUPS[s[1]];
+  ev.innerHTML=`<div class="k">skill.inspect()</div><h3>${s[0]}</h3><span class="grp" style="color:${c};border:1px solid ${c}">${s[1]}</span><p>${s[2]}</p><div class="where">Where: <b style="color:var(--fg)">${s[3]}</b></div>`}
+showEv();
+let t0=0;
+function sdraw(t){
+  t0=t||0;sx.clearRect(0,0,SW,SH);
+  const small=SW<500;
+  N.forEach(n=>{const drift=RM?0:Math.sin(t0/1400+n.ph)*4;let tx=n.hx+drift,ty=n.hy+Math.cos(t0/1700+n.ph)*4;
+    const dx=n.x-sm.x,dy=n.y-sm.y,d=Math.hypot(dx,dy);if(d<110&&!RM){tx+=dx/d*(110-d)*.5;ty+=dy/d*(110-d)*.5}
+    n.x+=(tx-n.x)*.08;n.y+=(ty-n.y)*.08});
+  // links within group + to center hub
+  sx.lineWidth=1;
+  N.forEach(a=>N.forEach(b=>{if(a.i<b.i&&a.g===b.g){const on=(!filter||filter===a.g);const hl=a.i===sel||b.i===sel||a.i===hover||b.i===hover;
+    sx.strokeStyle=hl?GROUPS[a.g]:on?'rgba(141,150,181,.22)':'rgba(141,150,181,.06)';sx.beginPath();sx.moveTo(a.x,a.y);sx.lineTo(b.x,b.y);sx.stroke()}}));
+  // cross links to Integration
+  const hub=N.find(n=>SK[n.i][0]==='REST APIs');
+  ['React Native','React.js','State management'].forEach(nm=>{const n=N.find(x=>SK[x.i][0]===nm);sx.strokeStyle='rgba(91,227,176,.18)';sx.setLineDash([3,4]);sx.beginPath();sx.moveTo(n.x,n.y);sx.lineTo(hub.x,hub.y);sx.stroke();sx.setLineDash([])});
+  N.forEach(n=>{const s=SK[n.i],c=GROUPS[n.g],on=!filter||filter===n.g,act=n.i===sel||n.i===hover;
+    const r=act?9:6;sx.globalAlpha=on?1:.25;
+    if(act){sx.fillStyle=c+'33';sx.beginPath();sx.arc(n.x,n.y,r+8,0,7);sx.fill()}
+    sx.fillStyle=c;sx.beginPath();sx.arc(n.x,n.y,r,0,7);sx.fill();
+    sx.font=`${act?600:500} ${small?11:12.5}px "Instrument Sans", system-ui, sans-serif`;sx.fillStyle=act?'#FFFFFF':'#C8CEE2';
+    sx.textAlign='center';const hw=sx.measureText(s[0]).width/2+4;sx.fillText(s[0],Math.min(SW-hw,Math.max(hw,n.x)),n.y-r-7);sx.globalAlpha=1});
+  if(!RM)requestAnimationFrame(sdraw);
+}
+requestAnimationFrame(sdraw);
+function near(e){const r=sc.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let b=-1,bd=26;N.forEach(n=>{const d=Math.hypot(n.x-x,n.y-y);if(d<bd){bd=d;b=n.i}});return{b,x,y}}
+sc.addEventListener('mousemove',e=>{const n=near(e);hover=n.b;sm.x=n.b>=0?-1e4:n.x;sm.y=n.y;sc.style.cursor=n.b>=0?'pointer':'crosshair';if(RM)sdraw()});
+sc.addEventListener('mouseleave',()=>{hover=-1;sm.x=sm.y=-1e4});
+sc.addEventListener('click',e=>{const n=near(e);if(n.b>=0){sel=n.b;showEv();if(RM)sdraw()}});
+
+/* ---------- ai flow ---------- */
+const steps=[...document.querySelectorAll('.step')];let si=0;
+if(!RM)setInterval(()=>{steps.forEach(s=>s.classList.remove('hot'));steps[si].classList.add('hot');si=(si+1)%steps.length},1600);
+else steps.forEach(s=>s.classList.add('hot'));
+
+/* ---------- copy ---------- */
+$('#copyLi').addEventListener('click',e=>{const b=e.currentTarget,u='https://www.linkedin.com/in/yagneshvaja';
+  const ok=()=>{b.textContent='Link copied';setTimeout(()=>b.textContent='Copy profile link',1800)};
+  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(ok).catch(()=>{b.textContent='linkedin.com/in/yagneshvaja'})});
+
+/* ---------- recruiter mode ---------- */
+const recBtn=$('#recBtn'),resume=$('#resume');
+function setRec(on){document.body.classList.toggle('recruiter',on);resume.hidden=!on;recBtn.setAttribute('aria-pressed',on);recBtn.textContent=on?'Interactive mode':'Recruiter mode';scrollTo({top:0});if(!on){build();sk.layout()}}
+recBtn.onclick=()=>setRec(!document.body.classList.contains('recruiter'));
+$('#exitRec').onclick=()=>setRec(false);
+
+/* ---------- command palette ---------- */
+const pal=$('#palette'),palIn=$('#palIn'),palList=$('#palList');
+const CMDS=[
+ ['Ask my agent','go',()=>go('#agent')],['Career pipeline','go',()=>go('#career')],['Shipped app','go',()=>go('#shipped')],
+ ['Skill graph','go',()=>go('#skills')],['AI workflow','go',()=>go('#ai')],['Contact','go',()=>go('#contact')],
+ ['Toggle recruiter mode','run',()=>recBtn.click()],['Open LinkedIn profile','link',()=>{const a=document.createElement('a');a.href='https://www.linkedin.com/in/yagneshvaja';a.target='_blank';a.rel='noopener';a.click()}],
+ ['Scatter the name','fun',()=>{go('#top');setTimeout(()=>hc.click(),400)}],
+];
+let pi=0,shown=CMDS;
+function go(h){if(document.body.classList.contains('recruiter'))setRec(false);document.querySelector(h).scrollIntoView({behavior:RM?'auto':'smooth'})}
+function render(){const q=palIn.value.toLowerCase();shown=CMDS.filter(c=>c[0].toLowerCase().includes(q));pi=Math.min(pi,Math.max(0,shown.length-1));
+  palList.innerHTML=shown.map((c,i)=>`<li class="${i===pi?'sel':''}" data-i="${i}">${c[0]}<span>${c[1]}</span></li>`).join('')||'<li>No match</li>'}
+function openPal(){pal.hidden=false;palIn.value='';pi=0;render();palIn.focus()}
+function closePal(){pal.hidden=true}
+function runPal(){const c=shown[pi];closePal();if(c)c[2]()}
+$('#cmdBtn').onclick=openPal;
+pal.addEventListener('click',e=>{if(e.target===pal)closePal();const li=e.target.closest('li[data-i]');if(li){pi=+li.dataset.i;runPal()}});
+palIn.addEventListener('input',()=>{pi=0;render()});
+palIn.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){pi=Math.min(pi+1,shown.length-1);render();e.preventDefault()}else if(e.key==='ArrowUp'){pi=Math.max(pi-1,0);render();e.preventDefault()}else if(e.key==='Enter'){runPal()}else if(e.key==='Escape')closePal()});
+addEventListener('keydown',e=>{const tag=(e.target.tagName||'');if((e.key==='/'&&!/INPUT|TEXTAREA/.test(tag))||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k')){e.preventDefault();openPal()}});
+/* ================= SCROLL FX ================= */
+const prog=$('#prog'),grid=$('#bggrid'),o1=$('#orb1'),o2=$('#orb2');
+// split headings into words
+document.querySelectorAll('section h2, .ship-copy h3').forEach(h=>{
+  if(h.closest('.statement'))return;
+  const walk=(node)=>{[...node.childNodes].forEach(n=>{
+    if(n.nodeType===3){const frag=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){frag.appendChild(document.createTextNode(t));return}
+      const w=document.createElement('span');w.className='w';const s=document.createElement('span');s.textContent=t;w.appendChild(s);frag.appendChild(w)});n.replaceWith(frag)}
+    else if(n.nodeType===1&&n.tagName!=='BR')walk(n)})};
+  walk(h);h.classList.add('split');h.querySelectorAll('.w>span').forEach((s,i)=>s.style.setProperty('--i',i));
+});
+const revealEls=[...document.querySelectorAll('.split, .win, .node .card, .step, .metric, .stage, .lede, .suggest')];
+revealEls.forEach(el=>{if(!el.classList.contains('split'))el.classList.add('rv')});
+if(!RM&&'IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.remove('pre')}
+    else if(e.boundingClientRect.top>0){e.target.classList.add('pre')}
+  }),{threshold:0,rootMargin:'0px 0px -4% 0px'});
+  // only pre-hide things that are below the first screen
+  revealEls.forEach(el=>{if(el.getBoundingClientRect().top>innerHeight)el.classList.add('pre');io.observe(el)});
+}
+// scramble eyebrows
+const CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*';
+function scramble(el){if(RM)return;const fin=el.dataset.t||(el.dataset.t=el.textContent);let f=0;
+  const t=setInterval(()=>{el.textContent=fin.split('').map((c,i)=>i<f/2||c===' '?c:CH[Math.random()*CH.length|0]).join('');if(++f>fin.length*2){clearInterval(t);el.textContent=fin}},28)}
+const eyes=[...document.querySelectorAll('.eyebrow')];
+if('IntersectionObserver' in window){const eo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)scramble(e.target)}),{threshold:1});eyes.forEach(e=>eo.observe(e))}
+// scrub statement words
+const scrub=$('#scrub');
+(function(){const walk=(node,hl)=>{[...node.childNodes].forEach(n=>{
+  if(n.nodeType===3){const frag=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){frag.appendChild(document.createTextNode(t));return}
+    const s=document.createElement('span');s.className='sw'+(hl?' hl':'');s.textContent=t;frag.appendChild(s)});n.replaceWith(frag)}
+  else walk(n,n.classList&&n.classList.contains('hl'))})};walk(scrub,false)})();
+const sws=[...scrub.querySelectorAll('.sw')];if(RM)sws.forEach(s=>s.classList.add('lit'));
+// marquees
+const mqs=[...document.querySelectorAll('.mq')];let mqX=0,lastY=scrollY,vel=0;
+// horizontal
+const hsec=$('#bring'),htrack=$('#htrack'),hnum=$('#hnum'),hbar=$('#hbar');
+// HUD
+const hudName=$('#hudName'),hudBar=$('#hudBar');
+const secs=[['top','boot'],['agent','agent'],['statement','mission'],['career','career'],['shipped','shipped'],['bring','value'],['skills','skills'],['ai','ai_flow'],['contact','contact']].map(([id,n])=>[document.getElementById(id),n]);
+function fx(){
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight,p=max>0?y/max:0;
+  prog.style.transform=`scaleX(${p})`;hudBar.style.width=(p*100)+'%';
+  vel+=((y-lastY)-vel)*.15;lastY=y;
+  if(!RM){
+    grid.style.transform=`translateY(${-y*.08}px)`;
+    o1.style.transform=`translate(${Math.sin(y/600)*60}px,${y*-.15}px)`;o2.style.transform=`translate(${Math.cos(y/500)*-50}px,${y*-.05}px)`;
+    mqX+=1+Math.abs(vel)*.35;
+    mqs.forEach(m=>{const w=m.scrollWidth/2;const d=+m.dataset.dir;let x=(mqX%w);m.style.transform=`translateX(${d<0?-x:x-w}px) skewX(${Math.max(-12,Math.min(12,-vel*.4))}deg)`});
+  }
+  // scrub
+  const r=scrub.getBoundingClientRect(),sp=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));
+  if(!RM){const n=Math.round(sp*sws.length);sws.forEach((s,i)=>s.classList.toggle('lit',i<n))}
+  // horizontal
+  const hr=hsec.getBoundingClientRect();if(getComputedStyle(hsec).height!=='auto'&&innerHeight>560){
+    const hp=Math.min(1,Math.max(0,-hr.top/(hr.height-innerHeight)));const dist=htrack.scrollWidth-htrack.parentElement.clientWidth+ (innerWidth*.2);
+    htrack.style.transform=`translateX(${-hp*Math.max(0,dist)}px)`;hbar.style.width=(hp*100)+'%';hnum.textContent=String(Math.min(5,1+Math.floor(hp*5))).padStart(2,'0')+' / 05';}
+  // hud
+  let cur='boot';secs.forEach(([el,n])=>{if(el&&el.getBoundingClientRect().top<innerHeight*.45)cur=n});hudName.textContent=cur;
+  requestAnimationFrame(fx);
+}
+requestAnimationFrame(fx);
+// cursor
+const cur=$('#cur'),dot=$('#curDot');let cx=-100,cy=-100,tx=-100,ty2=-100;
+if(matchMedia('(hover:hover)').matches&&!RM){
+  addEventListener('mousemove',e=>{tx=e.clientX;ty2=e.clientY;dot.style.transform=`translate(${tx}px,${ty2}px)`});
+  (function c(){cx+=(tx-cx)*.18;cy+=(ty2-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(c)})();
+  document.addEventListener('mouseover',e=>{cur.classList.toggle('big',!!e.target.closest('a,button,canvas,.hcard,input'))});
+}
+// magnetic buttons
+if(!RM)document.querySelectorAll('.btn').forEach(b=>{
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+  b.addEventListener('mouseleave',()=>{b.style.transform=''})});
+// tilt + spotlight on cards
+document.querySelectorAll('.node .card,.step,.win:not(.chat),.hcard').forEach(c=>{c.classList.add('spot');if(!c.classList.contains('hcard'))c.classList.add('tilt');
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
+    if(!RM&&c.classList.contains('tilt')&&!c.querySelector('canvas'))c.style.transform=`perspective(900px) rotateY(${(x-.5)*6}deg) rotateX(${-(y-.5)*6}deg) translateY(-3px)`});
+  c.addEventListener('mouseleave',()=>{c.style.transform=''})});
+})();
+</script>
+</body>
+</html>
